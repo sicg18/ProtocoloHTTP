@@ -14,7 +14,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class RequestThread implements Runnable {
-
 	private Socket connection;
 	private boolean existe;
 	byte[] bloque = null;
@@ -50,13 +49,13 @@ public class RequestThread implements Runnable {
 				bloque = new byte[BLOCK_SIZE];
 				existe = true;
 				content = new FileInputStream(rutaArchivo.toString());
-				enviarRespuesta(salida, connection, "200 OK", contentType, Files.readAllBytes(rutaArchivo), true,
+				enviarRespuesta(salida, connection, "200 OK", contentType, Files.readAllBytes(rutaArchivo), existe,
 						bloque, content);
 			} else {
 				byte[] contenido = "<h1>No se encuentra :(</h1>".getBytes();
 				existe = false;
 				bloque = new byte[BLOCK_SIZE];
-				enviarRespuesta(salida, connection, "404 Not Found", "text/html", contenido, false, bloque, content);
+				enviarRespuesta(salida, connection, "404 Not Found", "text/html", contenido, existe, bloque, content);
 			}
 		} catch (Exception exception) {
 			exception.printStackTrace();
