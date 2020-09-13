@@ -7,8 +7,6 @@ import java.util.concurrent.Executor;
 
 public class Servidor {
 
-	static Executor poolHilos;
-
 	public static void main(String[] args) throws IOException {
 
 		ServerSocket server = new ServerSocket(45000);

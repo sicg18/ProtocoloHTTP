@@ -18,7 +18,7 @@ public class RequestThread implements Runnable {
 	private Socket connection;
 	private boolean existe;
 	byte[] bloque = null;
-	int BLOCK_SIZE = 10;
+	int BLOCK_SIZE = 100;
 	int bytesRead = 0;
 
 	public RequestThread(Socket connection) {
@@ -29,7 +29,7 @@ public class RequestThread implements Runnable {
 		if ("/".equals(path)) {
 			path = "\\index.html";
 		}
-		return Paths.get("..\\Protocolo\\recursos", path);
+		return Paths.get("..\\ProtocoloHTTP\\recursos", path);
 	}
 
 	public String leerContenido(Path filePath) throws IOException {
@@ -87,7 +87,6 @@ public class RequestThread implements Runnable {
 		} else {
 			clientOutput.write(bloque);
 		}
-
 		clientOutput.write("\r\n\r\n".getBytes());
 		System.out.println("\r\n\r\n");
 
